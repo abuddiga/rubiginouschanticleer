@@ -1,7 +1,8 @@
 angular.module( 'dinnerDaddy.auth', [] )
 
-.controller( 'AuthController', function($scope, Auth, $window, $location, $timeout) {
+.controller( 'AuthController', function($scope, $rootScope, Auth, $window, $location, $timeout) {
   $scope.user = {};
+  $rootScope.allFriends = [];
 
   if ($location.path() === '/signout') {
     console.log( 'You are signed out. Redirecting in 2s.' );
@@ -25,6 +26,8 @@ angular.module( 'dinnerDaddy.auth', [] )
 })
 
 .factory( 'Auth', function($http, $location, $window) {
+
+
   var isAuth = function() {
     // TODO: check for user cookies
   };

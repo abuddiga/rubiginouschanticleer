@@ -1,11 +1,8 @@
 angular.module( 'dinnerDaddy.sessions', [] )
 
-.controller( 'SessionsController', function( $scope, Session, Auth, Socket ) {
-  // TODO: these two will need to be removed and created in a different controller
-  // $scope.username = '';
-  // $scope.username = Auth.getUserName();
-  // TODO: this will need to be pulled from the api
+.controller( 'SessionsController', function( $scope, $cookies, Session, Auth, Socket ) {
   $scope.sessions = [];
+  $scope.username = $cookies.get('name');
 
   $scope.sessionName = '';
 

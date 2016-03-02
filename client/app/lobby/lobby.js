@@ -1,7 +1,9 @@
 angular.module( 'dinnerDaddy.lobby', [] )
 
-.controller( 'LobbyController', function( $scope, Session, Lobby, Socket, $location, Auth ) {
+.controller( 'LobbyController', function( $scope, $location, $cookies, Session, Lobby, Socket, Auth ) {
   $scope.session = {};
+  $scope.username = $cookies.get('name');
+  $scope.users = [];
 
   Session.getSession()
   .then( function( session ) {
@@ -15,8 +17,6 @@ angular.module( 'dinnerDaddy.lobby', [] )
 
   });
 
-  $scope.username = Auth.getUserName();
-  $scope.users = [];
 
 
   //this function is listening to any newUser event and recieves/appends the new user
@@ -32,4 +32,44 @@ angular.module( 'dinnerDaddy.lobby', [] )
     $location.path( '/match' );
   } );
 
+} )
+
+.factory( 'Lobby', function( $http ) {
+  return {
+    getUsersInOneSession: function( sessionName ) {
+      return $http.get( '/api/sessions/users/' + sessionName )
+      .then( function( res ) {
+        return res.data;
+      } , 
+      function( err ) {
+        console.error( err );
+      } );
+    }
+  }
+})
+
+.factory( 'FetchMovies', function( $http ) {
+  return {
+
+    getMovie: function( id ) {
+      return $http.get( '/api/movies/' + id )
+      .then( function( res ) {
+        return res.data;
+      },
+      function( err ) {
+        console.error( err );
+      });
+    },
+
+    getNext10Movies: function( packageNumber ) {
+      return $http.get( '/api/movies/package/' + packageNumber )
+      .then( function( res ) {
+        return res.data;
+      },
+      function( err ) {
+        console.error( err );
+      } );
+    }
+
+  }
 } )
