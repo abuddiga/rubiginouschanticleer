@@ -8,7 +8,7 @@
     </h1>
   </div>
   <p class="center"><span class="bold">{{ user.username }}</span>, you and your friends have decided on a restaurant!</p>
-  <div class="movie">
+  <div class="match">
     <h2 class="center">YOU ARE EATING AT: {{ matched.name }}</h2>
      <div class="row">
       <!-- We want to size the poster appropriately so we can
@@ -22,5 +22,8 @@
         <a href="{{matched.url}}">More info</a>
       </div>
     </div>
+  </div>
+  <div class="locations">
+    <ng:include src="'app/location/location.html'"></ng:include>
   </div>
 </div>

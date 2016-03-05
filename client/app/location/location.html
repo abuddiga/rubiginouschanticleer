@@ -1,20 +1,21 @@
 <!-- script for google geolocation -->
+<div class="locationMap" ng-controller="locationController">
+  <div class="welcome"> Hello {{username}}</div>
+  <div class="welcomeinfo"> Click on markers for more info </div>
 
-<div class="welcome"> Hello {{username}}</div>
-<div class="welcomeinfo"> Click on markers for more info </div>
-
-<div class="fullmap">
-  <div id="mapcontainer"></div>
-    <div id="controls">
-    <form name="modeForm">
-      <label for="modeSelect">Transportation:</label>
-      <select name="modeSelect" id="modeSelect"
-        ng-options="option.name for option in data.availableOptions track by option.id"
-        ng-model="data.selectedOption" ng-change="updateMode()"></select>
-    </form>
+  <div class="fullmap">
+    <div id="mapcontainer"></div>
+      <div id="controls">
+      <form name="modeForm">
+        <label for="modeSelect">Transportation:</label>
+        <select name="modeSelect" id="modeSelect"
+          ng-options="option.name for option in data.availableOptions track by option.id"
+          ng-model="data.selectedOption" ng-change="updateMode()"></select>
+      </form>
+    </div>
   </div>
-</div>
 
-<div class="display">
-  Distance from {{ username }} to {{ restaurantName }} is {{ distance }} OR {{ duration }}
+  <div class="display">
+    Distance from {{ username }} to {{ restaurantName }} is {{ distance }} OR {{ duration }}
+  </div>
 </div>
